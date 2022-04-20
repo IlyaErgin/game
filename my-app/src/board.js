@@ -13,7 +13,6 @@ export class Board extends React.Component {
         };
     }
     handleClick(i) {
-        console.log("handle");
         const squares = this.state.squares.slice();
         if (calculateWinner(squares) || squares[i]){
             return;
@@ -26,7 +25,6 @@ export class Board extends React.Component {
     }
 
     renderSquare(i) {
-        console.log("rendersquare");
         return (
             
             <Square 
@@ -35,23 +33,6 @@ export class Board extends React.Component {
             />
         );
     }
-    /*
-    <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
-     */
 
     render(){
         const winner = calculateWinner(this.state.squares);
@@ -68,9 +49,9 @@ export class Board extends React.Component {
                 <div className='array'>
                     {Array.from({length: 3}).map((_, index ) => (
                         <div key={index} className="board-row">
-                            <div onClick={this.renderSquare.bind(this,index + 1)} className="square"></div>
-                            <div onClick={this.renderSquare.bind(this,index + 2)} className="square"></div>
-                            <div onClick={this.renderSquare.bind(this,index + 3)} className="square"></div>
+                            {this.renderSquare(index * 3)}
+                            {this.renderSquare((index * 3) + 1)}
+                            {this.renderSquare((index * 3) + 2)}
                         </div>
                     ))}
                 </div>
