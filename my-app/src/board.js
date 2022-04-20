@@ -13,6 +13,7 @@ export class Board extends React.Component {
         };
     }
     handleClick(i) {
+        console.log("handle");
         const squares = this.state.squares.slice();
         if (calculateWinner(squares) || squares[i]){
             return;
@@ -23,30 +24,19 @@ export class Board extends React.Component {
             xIsNext: !this.state.xIsNext,
         });
     }
+
     renderSquare(i) {
+        console.log("rendersquare");
         return (
+            
             <Square 
                 value={this.state.squares[i]}
-                onClick={() => this.handleClick(i)} 
+                onClick={this.handleClick.bind(this,i)}
             />
         );
-        
     }
-
-    render(){
-        const winner = calculateWinner(this.state.squares);
-        let status;
-        if (winner){
-            status = 'Win ' + winner;
-        }
-        else{
-            status = 'Next is ' + (this.state.xIsNext ? 'X' : 'O');
-        }
-
-        return (
-            <div>
-                <div className="status">{status}</div>
-                <div className="board-row">
+    /*
+    <div className="board-row">
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
                     {this.renderSquare(2)}
@@ -60,6 +50,29 @@ export class Board extends React.Component {
                     {this.renderSquare(6)}
                     {this.renderSquare(7)}
                     {this.renderSquare(8)}
+                </div>
+     */
+
+    render(){
+        const winner = calculateWinner(this.state.squares);
+        let status;
+        if (winner){
+            status = 'Win ' + winner;
+        }
+        else{
+            status = 'Next is ' + (this.state.xIsNext ? 'X' : 'O');
+        }
+        return (
+            <div>
+                <div className="status">{status}</div>
+                <div className='array'>
+                    {Array.from({length: 3}).map((_, index ) => (
+                        <div key={index} className="board-row">
+                            <div onClick={this.renderSquare.bind(this,index + 1)} className="square"></div>
+                            <div onClick={this.renderSquare.bind(this,index + 2)} className="square"></div>
+                            <div onClick={this.renderSquare.bind(this,index + 3)} className="square"></div>
+                        </div>
+                    ))}
                 </div>
             </div>
         );
