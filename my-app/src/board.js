@@ -12,7 +12,8 @@ export class Board extends React.Component {
             xIsNext: true,
         };
     }
-    handleClick(i) {
+    
+    /*handleClick(i) {
         const squares = this.state.squares.slice();
         if (calculateWinner(squares) || squares[i]){
             return;
@@ -23,13 +24,28 @@ export class Board extends React.Component {
             xIsNext: !this.state.xIsNext,
         });
     }
+    */
+
+    handleClick(i) {
+        return() => {
+            const squares = this.state.squares.slice();
+            if (calculateWinner(squares) || squares[i]){
+                return;
+            }
+            squares[i] = this.state.xIsNext ? 'X' : 'O';
+            this.setState({
+                squares: squares,
+                xIsNext: !this.state.xIsNext,
+                });
+        }
+    }
+    
 
     renderSquare(i) {
         return (
-            
             <Square 
                 value={this.state.squares[i]}
-                onClick={this.handleClick.bind(this,i)}
+                onClick={this.handleClick(i)}
             />
         );
     }
