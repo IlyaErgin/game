@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactDOM  from 'react-dom';
-import './index.css';
-import { lines } from './lines';
+import * as React from "react";
+import { IOwnProps } from "./types";
+import { lines } from "./costants";
 
-export function calculateWinner(squares) {
+export const calculateWinner: React.FC<IOwnProps> = ({squares}) => {
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {

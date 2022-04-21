@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM  from 'react-dom';
 import './index.css';
-import { calculateWinner } from "./calculateWinner"
-import { Square } from './square';
+import { Square } from './components/square'
+import {calculateWinner} from './components/board'
 
 export class Board extends React.Component {
     constructor(props){
@@ -13,7 +13,7 @@ export class Board extends React.Component {
         };
     }
 
-    handleClick(i) {
+    handleClick (i){
         return() => {
             const squares = this.state.squares.slice();
             if (calculateWinner(squares) || squares[i]){
