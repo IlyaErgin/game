@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM  from 'react-dom';
 import './index.css';
-import { Square } from './components/square'
+import { Squareyarn  } from './components/square'
 import {calculateWinner} from './components/board'
 
 export class Board extends React.Component {
@@ -29,10 +29,7 @@ export class Board extends React.Component {
     
     renderSquare(i) {
         return (
-            <Square 
-                value={this.state.squares[i]}
-                onClick={this.handleClick(i)}
-            />
+            <Square value={this.state.squares[i]} onClick={this.handleClick(i)}/>
         );
     }
 
