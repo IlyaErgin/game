@@ -23,18 +23,20 @@ export const Rows: React.FC<IOwnProps> = React.memo(({xIsNext, onChangeNext, onC
 
     useEffect(() => {
         const winner = calculateWinner(squares);
-        if (winner){
-            onChangeStatus("Win " + winner);
+        if(!squares.includes("")){
+            onChangeStatus("Draw");
         } else {
             onChangeStatus("Next is " + (xIsNext ? "X" : "O"));
         }
+        if (winner){
+            onChangeStatus("Win " + winner);
+        } 
     }, [squares])
-
+    
     const rows = useMemo(() => Array.from({length: 3}), [])
     return (
         <div className="array">
             {rows.map((_, index) => {
-                //console.log("render1")
                 return (
                     <div key={index} className="board-row">
                         <Square value={squares[index * 3]} onClick={handleClick(index * 3)}/>
